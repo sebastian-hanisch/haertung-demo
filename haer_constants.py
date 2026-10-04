@@ -98,7 +98,7 @@ PRESET_HELP = {
                                                           "Kennzahlen klar.",
     "Zufällig: R gegen α* im Widerspruch": "Ein echter Zielkonflikt: Zufällige Härtung macht R SCHLECHTER (0.2055→0.2026), aber α* gleichzeitig BESSER (2.8→1.8) - und β_c wird ebenfalls "
                                             "schlechter (0.0939→0.0880). Die drei geerbten Kennzahlen messen unterschiedliche Angriffsmodelle und können gegenläufig reagieren.",
-    "Schneider-Optimierung in Aktion": "R steigt beim Skalenfrei-Netz deutlich (0.1112→0.1377 bei 150 Versuchen) - der R-Verlauf zeigt jeden akzeptierten Tausch als monotonen Schritt nach oben "
+    "Schneider-Optimierung in Aktion": "R steigt beim Skalenfrei-Netz deutlich (0.1112→0.1588 bei 400 Versuchen) - der R-Verlauf zeigt jeden akzeptierten Tausch als monotonen Schritt nach oben "
                                        "(Korrektheits-Kette Punkt 2).",
     "Zwiebelstruktur: bestätigt sich nicht überall": "Beim Betriebsnetz-Zufallsgraph (n=169) bestätigt sich Wu & Holmes Zwiebelstruktur-Hypothese deutlich (Assortativität 0.018→0.111 bei 800 "
                                                       "Versuchen) - beim reinen Raster geht sie dagegen in die GEGENRICHTUNG (0.100→0.047) trotz klar steigendem R. Kein durchgängiger Befund.",

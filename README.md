@@ -13,7 +13,7 @@ Zehntes Stück der **Graphen-und-Netzwerke-Reihe** der "Konzepte"-Reihe für die
  ├─ 5 Graphfärbung                                                            [gebaut: graph-coloring-demo]
  ├─ 6 Zentralität ─ 7 Strukturkennzahlen ─ 8 Robustheit ─ 9 Kaskaden/Ausbr.   [gebaut: centrality-demo, strukturkennzahlen-demo, robustheit-demo, kaskaden-demo]
  │                            └─ 10 Kritische Knoten härten                   [gebaut: haertung-demo ─ DIESES STÜCK]
- └─ 11 Bandbreite ─ 12 Bandbreite von G(n,k,b) und Cliquenüberdeckung         [nicht gebaut]
+ └─ 11 Bandbreite ─ 12 Bandbreite von G(n,k,b) und Cliquenüberdeckung         [gebaut: bandbreite-demo, cliquenbandbreite-demo]
 ```
 
 **Wichtige Leserichtung** (wortgleiche Konvention aus Stück 8/9): höheres R = robuster. **Niedrigeres** α\* = robuster (weniger Sicherheitsspielraum nötig, um einen Kaskadenausbruch zu vermeiden). **Höheres** β_c = robuster (eine Epidemie braucht eine größere Ansteckungswahrscheinlichkeit, um sich auszubreiten). Härtung soll also R und β_c ANHEBEN, α\* dagegen SENKEN.
@@ -143,3 +143,7 @@ venv\Scripts\streamlit run app.py
 - Pastor-Satorras, R., & Vespignani, A. (2001). *Epidemic spreading in scale-free networks.* Physical Review Letters 86(14), 3200–3203 (wortgleich aus `kaskaden-demo`).
 
 Gebaut mit Streamlit, Plotly, NumPy und pandas.
+
+---
+
+Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). Mehr zur Reihe: [Graphen und Netzwerke: BFS bis Cliquenbandbreite](https://sebastianhanisch.net/konzepte-graphen-netzwerke.html).
