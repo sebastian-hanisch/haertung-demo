@@ -48,9 +48,9 @@ def instance(settings):
 def highest_load_node(adj):
     """Der Knoten mit der höchsten Betweenness (Motter & Lai: der Ausfall, der am ehesten eine Kaskade auslöst) - stets auf dem GEGEBENEN Graphen neu bestimmt (vor der Härtung: der ursprüngliche
     Hub; nach der Härtung: der dann höchstbelastete Knoten, der sich durch die Härtung verschoben haben kann)."""
-    n = len(adj)
     node_between, _, _ = A.betweenness_brandes(adj)
-    return max(range(n), key=lambda v: (node_between[v], -v))
+    ranked = A._ranked_by_load(enumerate(node_between))            # Gleichstand bis auf Rundung: kleinster Index (Rundungsreste dürfen nicht entscheiden)
+    return ranked[0][0] if ranked else 0
 
 
 def robustness_R(adj):

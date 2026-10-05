@@ -568,6 +568,25 @@ def harden_random(adj, b, seed):
 # --- Härtung 2: Kritische-Kante-Bypass (NEU, Kanten-Betweenness aus Stück 6) --------------------------------------------------------------------------
 
 
+LOAD_TOL = 1e-9                                         # relative Toleranz: Lasten, die sich nur um Gleitkomma-Rundung unterscheiden, sind GLEICH (symmetrische Kanten/Knoten)
+
+
+def _ranked_by_load(items):
+    """Kanten (oder Knoten) absteigend nach Last; Lasten, die bis auf `LOAD_TOL` (relativ) gleich sind, gelten als Gleichstand und werden nach Schlüssel aufsteigend geordnet. Ohne Toleranz entschieden
+    Rundungsreste der Brandes-Summen (symmetrische Kanten haben mathematisch gleiche, als Gleitkommazahl aber verschiedene Lasten) statt des dokumentierten kleinsten Schlüssels."""
+    items = sorted(items, key=lambda kv: (-kv[1], kv[0]))
+    out = []
+    i = 0
+    while i < len(items):
+        j = i
+        top = items[i][1]
+        while j + 1 < len(items) and top - items[j + 1][1] <= LOAD_TOL * max(1.0, abs(top)):
+            j += 1
+        out.extend(sorted(items[i:j + 1], key=lambda kv: kv[0]))
+        i = j + 1
+    return out
+
+
 def harden_critical_bypass(adj, b):
     """b mal wiederholen: Kanten-Betweenness (Brandes) auf dem AKTUELLEN Graphen berechnen, die Kanten absteigend nach Last ordnen (Gleichstand: kleinster Kantenschlüssel). Für die am höchsten
     belastete Kante (u,v) mit u<v (Konvention: v ist der Endpunkt, an dem der Umweg ansetzt) einen Nachbarn w von v mit w≠u und (u,w) noch keine Kante wählen (kleinster Index bei Gleichstand),
@@ -581,7 +600,7 @@ def harden_critical_bypass(adj, b):
         _, edge_between, _ = betweenness_brandes(cur_adj)
         if not edge_between:
             break
-        ranked = sorted(edge_between.items(), key=lambda kv: (-kv[1], kv[0]))
+        ranked = _ranked_by_load(edge_between.items())
         placed = False
         for (u, v), _load in ranked:
             candidates = sorted(w for w in nbrs[v] if w != u and w not in nbrs[u])
